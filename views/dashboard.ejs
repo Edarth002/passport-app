@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <style>
+      body {
+        background: #fff;
+        color: #000;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+      }
+      a {
+        color: #000;
+        display: inline-block;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome, <%= user.username %>!</h1>
+    <p>This is your dashboard.</p>
+    <a href="/logout">Logout</a>
+  </body>
+</html>
