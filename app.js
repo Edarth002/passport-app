@@ -25,7 +25,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 //Parsing Requests
-app.use(urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(expressEjsLayouts);
 app.set("view engine", "ejs");
