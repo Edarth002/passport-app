@@ -6,7 +6,7 @@ import User from "../models/User.js";
 const authPassport = (passport) => {
   passport.use(
     new LocalStrategy(
-      { userNameField: "email" },
+      { usernameField: "email" },
       async (email, password, done) => {
         try {
           const user = await User.findOne({ email });

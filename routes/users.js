@@ -12,9 +12,18 @@ router.get("/login", (req, res) => {
 
 //Login Route
 router.post("/login", (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: "/users/dashboard",
-    failureRedirect: "/users/login",
+  console.log("Login form data:", req.body);
+  passport.authenticate("local", (err, user, info) => {
+    if (err) return next(err);
+    if (!user) {
+      console.log("Login failed:", info.message);
+      return res.redirect("/users/login");
+    }
+
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      return res.redirect("/users/dashboard");
+    });
   })(req, res, next);
 });
 
@@ -39,7 +48,7 @@ router.post("/register", async (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render("register", {
+    return res.render("register", {
       errors,
       username,
       email,
@@ -81,9 +90,9 @@ router.post("/register", async (req, res) => {
 //Dashboard Route
 router.get("/dashboard", (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/users/login");
+    return res.redirect("/users/login");
   }
-  res.send("Welcome to Dashboard, ", req.user.username);
+  res.render("dashboard", { username: req.user.username });
 });
 
 export default router;
