@@ -1,6 +1,7 @@
 import express from "express";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+import passport from "passport";
 
 const router = express.Router();
 
@@ -9,12 +10,20 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+//Login Route
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/users/dashboard",
+    failureRedirect: "/users/login",
+  })(req, res, next);
+});
+
 //Register users
 router.get("/register", (req, res) => {
   res.render("register");
 });
 
-//Register Render
+//Register Route
 router.post("/register", async (req, res) => {
   console.log(req.body);
   const { username, email, password } = req.body;
@@ -67,6 +76,14 @@ router.post("/register", async (req, res) => {
     console.log("Registration error: ", err);
     res.status(500).send("Server error");
   }
+});
+
+//Dashboard Route
+router.get("/dashboard", (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect("/users/login");
+  }
+  res.send("Welcome to Dashboard, ", req.user.username);
 });
 
 export default router;

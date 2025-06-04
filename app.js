@@ -6,13 +6,26 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import { keys } from "./config/keys.js";
-import { urlencoded } from "express";
+import passport from "passport";
+import authPassport from "./config/passport.js";
+import session from "express-session";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 //Config
 const db = keys.MongoURI;
+authPassport(passport);
+app.use(
+  session({
+    secret: "your_secret_key",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Connection to MongoDb
 mongoose
