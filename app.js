@@ -6,7 +6,7 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import { keys } from "./config/keys.js";
-import { error } from "console";
+import { urlencoded } from "express";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,6 +23,9 @@ mongoose
 //EJS
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+//Parsing Requests
+app.use(urlencoded({ extended: false }));
 
 app.use(expressEjsLayouts);
 app.set("view engine", "ejs");
