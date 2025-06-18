@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/')
     },
     filename:(req, file, cb)=>{
-        const suffix = Date.now
+        const suffix = Date.now()
         const ext = path.extname(file.originalname)
         cb(null, file.fieldname + "-" + suffix + ext )
     }
@@ -24,6 +24,6 @@ const upload = multer({storage})
 
 router.post("/upload", upload.single("image"), uploadImage )
 
-router.post("/gallery", myGallery)
+router.get("/gallery", myGallery)
 
 export default router;

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Gallery</title>
+  <style>
+    img {
+      max-width: 300px;
+      margin: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Image Gallery</h1>
+
+  <div>
+    <% if (images.length === 0) { %>
+      <p>No images uploaded yet.</p>
+    <% } else { %>
+      <% images.forEach(image => { %>
+        <div>
+          <h3><%= image.title %></h3>
+          <img src="/<%= image.imageUrl %>" alt="<%= image.title %>" />
+        </div>
+      <% }); %>
+    <% } %>
+  </div>
+
+  <p><a href="/upload">Upload More</a></p>
+</body>
+</html>

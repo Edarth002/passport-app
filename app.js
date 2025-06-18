@@ -9,6 +9,8 @@ import { keys } from "./config/keys.js";
 import passport from "passport";
 import authPassport from "./config/passport.js";
 import session from "express-session";
+import imageRoutes from './routes/image.js'
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -43,6 +45,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(expressEjsLayouts);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads"))); 
+app.use("/api/images", imageRoutes);
+
+
+app.get("/upload", (req, res) => {
+  res.render("upload");
+});
 
 //Routes
 
