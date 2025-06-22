@@ -4,7 +4,7 @@
 
 This is a simple user authentication system built using **Node.js**, **Express.js**, **MongoDB**, **Bcrypt**, **Passport.js**, and **Multer**. It supports user registration, login, and logout functionalities with secure password hashing, session-based authentication, and profile image upload capability.
 
-## 🛠️ Technologies Used
+🛠️ Technologies Used
 
 * **Node.js** – JavaScript runtime
 * **Express.js** – Web application framework
