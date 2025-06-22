@@ -1,10 +1,8 @@
----
-
 # Form Authentication with Node.js, MongoDB, Express.js, Bcrypt, Passport.js, and Multer
 
 This is a simple user authentication system built using **Node.js**, **Express.js**, **MongoDB**, **Bcrypt**, **Passport.js**, and **Multer**. It supports user registration, login, and logout functionalities with secure password hashing, session-based authentication, and profile image upload capability.
 
-🛠️ Technologies Used
+##🛠️ Technologies Used
 
 * **Node.js** – JavaScript runtime
 * **Express.js** – Web application framework
@@ -42,5 +40,4 @@ This is a simple user authentication system built using **Node.js**, **Express.j
 * Uploaded images are stored in the `public/uploads` directory.
 * Make sure this folder exists before testing uploads or it will throw an error.
 
----
 
